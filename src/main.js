@@ -8,7 +8,7 @@
 // console.log(tasks)
 
 import { refs } from "./js/refs";
-import { addTasks, initTasks } from "./js/tasks";
+import { addTasks, deleteTasks, initTasks } from "./js/tasks";
 
 initTasks()
 
@@ -21,6 +21,8 @@ refs.form.addEventListener("submit", (e) => {
     return alert("Field all input")
   };
 
+
+
   const task = {
     title: inputName,
     description: taskDescription,
@@ -31,3 +33,10 @@ console.log(task)
   addTasks(task)
  
 });
+
+refs.ul.addEventListener("click", (e) => {
+  if (e.target.nodeName !== 'BUTTON') return;
+
+  const titleToDelete = e.target.nextElementSibling.textContent;
+  deleteTasks(titleToDelete);
+})
