@@ -1,16 +1,33 @@
-/*
-  Створи список справ.
-  На сторінці є два інпути які має вводиться назва і текст задачі.
-  Після натискання на кнопку "Add" завдання додається до списку #task-list.
+//  import { getFromLs, saveInLs } from "./js/local-storage-api";
+//  import { refs } from "./js/refs";
 
-  У кожної картки має бути кнопка "Delete", щоб можна було
-  прибрати завдання зі списку.
-  Список із завданнями має бути доступним після перезавантаження сторінки.
+// saveInLs('tasks', [{ title, description }, {}]);
+//  saveInLs('theme', 'dark')
 
-  Розмітка картки задачі
-  <li class="task-list-item">
-      <button class="task-list-item-btn">Delete</button>
-      <h3>Заголовок</h3>
-      <p>Текст</p>
-  </li>
-*/
+// const tasks = getFromLs('tasks');
+// console.log(tasks)
+
+import { refs } from "./js/refs";
+import { addTasks, initTasks } from "./js/tasks";
+
+initTasks()
+
+refs.form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const inputName = e.target.elements.taskName.value.trim();
+  const taskDescription = e.target.elements.taskDescription.value.trim();
+
+  if (!inputName || !taskDescription) {
+    return alert("Field all input")
+  };
+
+  const task = {
+    title: inputName,
+    description: taskDescription,
+  }
+console.log(task)
+  refs.form.reset()
+
+  addTasks(task)
+ 
+});
